@@ -1,0 +1,5 @@
+SELECT people.*, COUNT(sales.id) AS sale_count, RANK() OVER (ORDER BY COUNT(sales.id) DESC) AS sale_rank
+FROM people
+LEFT JOIN sales ON people.id = sales.people_id
+GROUP BY people.id
+ORDER BY sale_rank;

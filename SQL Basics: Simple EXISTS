@@ -1,7 +1,4 @@
-SELECT
-  id,
-  name 
-FROM departments 
+SELECT d.*
 WHERE EXISTS (
     SELECT 1
     FROM sales

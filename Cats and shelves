@@ -1,0 +1,1 @@
+SELECT a, b, FLOOR((b - a) / 3)::INTEGER + (b - a) % 3 AS res FROM jumps;

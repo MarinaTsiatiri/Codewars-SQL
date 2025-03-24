@@ -1,0 +1,9 @@
+SELECT
+  id,
+  name 
+FROM departments 
+WHERE EXISTS (
+    SELECT 1
+    FROM sales
+    WHERE sales.price>98.00 AND sales.department_id=departments.id
+);

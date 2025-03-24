@@ -1,0 +1,22 @@
+-- # write your SQL statement here: 
+-- you are given a table 'cubes' with column 'n' (bigint)
+-- return a query with column 'n' and your result in a column named 'res' (bigint)
+-- sort results by column 'n' ascending
+
+WITH RECURSIVE numbers AS (
+    SELECT n AS first_n, 1 AS i, CAST(POWER(1, 3) AS BIGINT) AS cube_sum
+    FROM cubes
+  
+    UNION ALL
+    
+    SELECT first_n, i + 1, cube_sum + CAST(POWER(i + 1, 3) AS BIGINT)
+    FROM numbers
+  
+    WHERE i + 1 <= first_n
+
+)
+              
+SELECT first_n AS n, MAX(cube_sum) AS res
+FROM numbers
+GROUP BY first_n
+ORDER BY n ASC
